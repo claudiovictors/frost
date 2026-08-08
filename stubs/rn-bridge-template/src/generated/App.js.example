@@ -1,0 +1,13 @@
+import { useState } from 'react';
+import { Button, StyleSheet, Text, View } from 'react-native';
+
+function App() {
+  let [count, setCount] = useState(0);
+  let styles = StyleSheet.create({ container: { flex: 1, padding: 16, backgroundColor: "#fff" }, title: { fontSize: 20 } });
+  return <View style={styles.container}>
+            <Text style={styles.title}>Contagem: {count}</Text>
+            <Button title="Incrementar" onPress={() => setCount((count + 1))} />
+        </View>;
+}
+
+export default App;

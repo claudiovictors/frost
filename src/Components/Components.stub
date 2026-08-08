@@ -1,0 +1,80 @@
+<?php
+
+/**
+ * STUBS — só pra autocomplete/IDE (PHPStorm, Intelephense, etc).
+ *
+ * Estes arquivos NUNCA são executados: o código Frost real é transpilado
+ * pro JS/JSX (ver pacote Transpiler), não rodado como PHP de verdade. Eles
+ * existem só pra o editor conseguir sugerir nomes/assinaturas enquanto você
+ * escreve um arquivo .php do Frost. Aponte seu editor pra esta pasta como
+ * "stub directory" (no PHPStorm: Settings > PHP > Include Path).
+ *
+ * Não coloque estes arquivos no autoload do composer.json da sua app —
+ * eles são deliberadamente inertes.
+ */
+
+declare(strict_types=1);
+
+namespace Frost\Stubs\Components;
+
+/** @see https://reactnative.dev/docs/view */
+final class View
+{
+}
+
+/** @see https://reactnative.dev/docs/text */
+final class Text
+{
+}
+
+/** @see https://reactnative.dev/docs/image */
+final class Image
+{
+}
+
+/** @see https://reactnative.dev/docs/scrollview */
+final class ScrollView
+{
+}
+
+/** @see https://reactnative.dev/docs/textinput */
+final class TextInput
+{
+}
+
+/** @see https://reactnative.dev/docs/touchableopacity */
+final class TouchableOpacity
+{
+}
+
+/** @see https://reactnative.dev/docs/button */
+final class Button
+{
+}
+
+/** @see https://reactnative.dev/docs/safeareaview */
+final class SafeAreaView
+{
+}
+
+/** @see https://reactnative.dev/docs/flatlist */
+final class FlatList
+{
+}
+
+/** @see https://reactnative.dev/docs/pressable */
+final class Pressable
+{
+}
+
+final class StyleSheet
+{
+    /**
+     * @param array<string, array<string, int|float|string>> $styles
+     * @return array<string, array<string, int|float|string>>
+     */
+    public static function create(array $styles): array
+    {
+        return $styles;
+    }
+}

@@ -1,0 +1,38 @@
+<?php
+
+/**
+ * STUBS de hooks — mesma observação do components.stub.php: nunca executam
+ * de verdade, só existem pro editor sugerir assinatura/autocomplete.
+ */
+
+declare(strict_types=1);
+
+namespace Frost\Stubs\Hooks;
+
+/**
+ * @template T
+ * @param T $initial
+ * @return array{0: T, 1: callable(T): void} [valor, setValor]
+ */
+function useState(mixed $initial): array
+{
+    return [$initial, static function (mixed $v): void {}];
+}
+
+/**
+ * @param callable(): (callable(): void)|void $effect
+ * @param array<int, mixed> $deps
+ */
+function useEffect(callable $effect, array $deps = []): void
+{
+}
+
+/**
+ * @template T
+ * @param T $initial
+ * @return array{current: T}
+ */
+function useRef(mixed $initial = null): array
+{
+    return ['current' => $initial];
+}
