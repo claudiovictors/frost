@@ -13,6 +13,7 @@ final class Application
         $rest = array_slice($argv, 2);
 
         return match ($command) {
+            'init' => (new InitCommand())->run($rest),
             'build' => (new BuildCommand())->run($rest),
             'dev' => (new DevCommand())->run($rest),
             null, 'help', '--help', '-h' => $this->printHelp(),
@@ -26,11 +27,13 @@ final class Application
         Frost CLI
 
         Uso:
-          frost build [--config=caminho/frost.config.php]   Compila uma vez
-          frost dev   [--config=caminho/frost.config.php]   Compila e observa mudanças (rebuild completo)
-          frost help                                        Mostra esta ajuda
+          frost init  [--path=caminho]                       Cria app/App.php (com tela de exemplo) e frost.config.php
+          frost build [--config=caminho/frost.config.php]     Compila uma vez
+          frost dev   [--config=caminho/frost.config.php]     Compila e observa mudanças (rebuild completo)
+          frost help                                          Mostra esta ajuda
 
         Sem --config, procura frost.config.php no diretório atual.
+        Sem --path, o init usa o diretório atual.
 
         TXT);
 
