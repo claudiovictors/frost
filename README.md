@@ -43,7 +43,7 @@ O Frost é o **framework**. O app que você constrói com ele é um projeto
 separado (ver seção "Criando um app" abaixo).
 
 ```bash
-composer require frost/framework
+composer require claudiovictors/frost
 ```
 
 ## O que já funciona
