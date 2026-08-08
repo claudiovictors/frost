@@ -3,7 +3,31 @@
 
 declare(strict_types=1);
 
-require __DIR__ . '/../vendor/autoload.php';
+// Precisa tentar dois caminhos: quando o Frost é o projeto raiz (dev do
+// próprio framework, `composer install` local), o autoload.php está em
+// bin/../vendor/autoload.php. Quando instalado como dependência de outro
+// projeto (`composer require claudiovictors/frost`), este arquivo fica em
+// vendor/claudiovictors/frost/bin/frost, e o autoload.php de verdade é o
+// do projeto raiz, três níveis acima: vendor/autoload.php.
+$autoloadCandidates = [
+    __DIR__ . '/../vendor/autoload.php',
+    __DIR__ . '/../../../autoload.php',
+];
+
+$autoloadPath = null;
+foreach ($autoloadCandidates as $candidate) {
+    if (is_file($candidate)) {
+        $autoloadPath = $candidate;
+        break;
+    }
+}
+
+if ($autoloadPath === null) {
+    fwrite(STDERR, "Não encontrei o autoload.php do Composer. Rode 'composer install'.\n");
+    exit(1);
+}
+
+require $autoloadPath;
 
 use Frost\Cli\Application;
 
