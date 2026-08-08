@@ -3,7 +3,6 @@
     "description": "Framework PHP para apps mobile reais (iOS/Android) com sintaxe JSX-like sobre React Native.",
     "type": "library",
     "license": "MIT",
-    "version": "0.1.0",
     "authors": [
         {
             "name": "Cláudio Victor",
