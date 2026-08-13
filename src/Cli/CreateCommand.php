@@ -91,28 +91,20 @@ final class CreateCommand
         return $exitCode === 0;
     }
 
-    /** Copia os arquivos de bridge (App.js, babel/metro config) por cima do projeto Expo recém-criado. */
+    /**
+     * Pluga o App.js de ponte no projeto Expo recém-criado. NÃO mexe em
+     * babel.config.js nem metro.config.js — o Expo já gera os corretos
+     * sozinho (usam 'expo/metro-config' e 'babel-preset-expo'). O antigo
+     * stubs/rn-bridge-template foi escrito pensando num projeto RN "puro"
+     * via @react-native-community/cli (que usa '@react-native/metro-
+     * config', um pacote diferente) — sobrescrever com aquele aqui quebra
+     * o Metro do Expo com "Cannot find module '@react-native/metro-config'".
+     */
     private function wireBridgeFiles(string $mobileDir): void
     {
-        $bridgeSource = __DIR__ . '/../../stubs/rn-bridge-template';
-
-        if (!is_dir($bridgeSource)) {
-            fwrite(STDERR, "✗ stubs/rn-bridge-template não encontrado — pulei a conexão automática.\n");
-
-            return;
-        }
-
         @mkdir($mobileDir . '/src/generated', 0777, true);
 
         file_put_contents($mobileDir . '/App.js', "import App from './src/generated/App';\n\nexport default App;\n");
-
-        foreach (['babel.config.js', 'metro.config.js'] as $file) {
-            $source = $bridgeSource . '/' . $file;
-            if (is_file($source)) {
-                copy($source, $mobileDir . '/' . $file);
-            }
-        }
-
         file_put_contents($mobileDir . '/src/generated/.gitignore', "*\n!.gitignore\n");
 
         fwrite(STDOUT, "✓ Projeto React Native conectado ao Frost em {$mobileDir}\n");
@@ -144,7 +136,6 @@ CFG;
         "php": ">=8.1"
     }
 }
-
 JSON;
     }
 
